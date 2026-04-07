@@ -721,3 +721,31 @@ button:active {
 .img2 {
     animation: float 4s ease-in-out infinite;
 }
+.signup-form {
+  width: 300px;
+  margin: 100px auto;
+  padding: 30px;
+
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px;
+  text-align: center;
+}
+
+.signup-form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.signup-form button {
+  background: #1db954;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}

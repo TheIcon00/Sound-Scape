@@ -20,15 +20,16 @@
       <div class="logo">Sound Scape</div>
       <ul class="nav-links">
         {% if user.is_authenticated %}
-  <li class="nav-item">
-    <form action="/accounts/logout/" method="post" class="logout-form">
-      {% csrf_token %}
-      <button type="submit" class="nav-link logout-btn">Logout</button>
-    </form>
-  </li>
-{% else %}
-  <li><a href="/accounts/login/" class="nav-link">Login</a></li>
-{% endif %}
+        <li class="nav-item">
+          <form action="/accounts/logout/" method="post" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="nav-link logout-btn">Logout</button>
+          </form>
+        </li>
+        {% else %}
+        <li><a href="/accounts/login/" class="nav-link">Login</a></li>
+        <li><a href="/accounts/signup/" class="nav-link">Sign Up</a></li>
+        {% endif %}
         <li>Home</li>
         <li>Create</li>
         <li>Plans</li>
@@ -49,14 +50,13 @@
       <div class="left-panel">
         <button id="library-btn" class="library-btn">My Library</button>
         <h3>Music Category</h3>
-<ul>
-  <li class="genre-btn" data-genre="Classic">Classic</li>
-  <li class="genre-btn" data-genre="Jazz">Jazz</li>
-  <li class="genre-btn" data-genre="Blues">Blues</li>
-  <li class="genre-btn" data-genre="Metal">Metal</li>
-</ul>
-      
-        
+        <ul>
+          <li class="genre-btn" data-genre="Classic">Classic</li>
+          <li class="genre-btn" data-genre="Jazz">Jazz</li>
+          <li class="genre-btn" data-genre="Blues">Blues</li>
+          <li class="genre-btn" data-genre="Metal">Metal</li>
+        </ul>
+
         <!-- PLAYER -->
         <div class="music-player">
           <p id="title">Now Playing: None</p>
@@ -113,7 +113,7 @@
         data-src="{{ item.song.audio_file.url }}"
         data-id="{{ item.song.id }}"
         data-title="{{ item.song.title }}"
-data-artist="{{ item.song.artist }}"
+        data-artist="{{ item.song.artist }}"
       >
         <span class="song-name">🎵 {{ item.song.title }}</span>
 
@@ -126,41 +126,42 @@ data-artist="{{ item.song.artist }}"
       <p>No songs in your library yet</p>
       {% endfor %}
     </div>
-<div id="genre-section" class="library hidden">
-  <h2 id="genre-title">Genre</h2>
-</div>
-
-<section class="experience">
-  <div class="music-section">
-    <div class="section-header">
-      <h2 class="section-title">Something for you</h2>
-      <p class="section-subtitle">Based on your recent listening</p>
+    <div id="genre-section" class="library hidden">
+      <h2 id="genre-title">Genre</h2>
     </div>
 
-    <div class="music-cards">
-      {% for song in songs|slice:":4" %}
-      <div class="music-card" 
-           data-src="{{ song.audio_file.url }}" 
-           data-id="{{ song.id }}" 
-           data-title="{{ song.title }}" 
-           data-artist="{{ song.artist }}">
+    <section class="experience">
+      <div class="music-section">
+        <div class="section-header">
+          <h2 class="section-title">Something for you</h2>
+          <p class="section-subtitle">Based on your recent listening</p>
+        </div>
 
-        {% if song.cover_image %}
-          <img src="{{ song.cover_image.url }}" />
-        {% else %}
-          <img src="{% static 'images/default.jpg' %}" />
-        {% endif %}
+        <div class="music-cards">
+          {% for song in songs|slice:":4" %}
+          <div
+            class="music-card"
+            data-src="{{ song.audio_file.url }}"
+            data-id="{{ song.id }}"
+            data-title="{{ song.title }}"
+            data-artist="{{ song.artist }}"
+          >
+            {% if song.cover_image %}
+            <img src="{{ song.cover_image.url }}" />
+            {% else %}
+            <img src="{% static 'images/default.jpg' %}" />
+            {% endif %}
 
-        <div class="overlay">
-          <h4>{{ song.title }}</h4>
-          <button class="play-btn">▶</button>
-          <button class="add-btn" data-id="{{ song.id }}">➕</button>
+            <div class="overlay">
+              <h4>{{ song.title }}</h4>
+              <button class="play-btn">▶</button>
+              <button class="add-btn" data-id="{{ song.id }}">➕</button>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
+    </section>
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
