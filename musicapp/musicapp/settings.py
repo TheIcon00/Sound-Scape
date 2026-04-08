@@ -126,3 +126,4 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 ALLOWED_HOSTS = ['.onrender.com']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+ALLOWED_HOSTS = ['*']
