@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(+67o7@ff^j&q17yb)39$+fm%u6sntdrd6p6)_&g-8vahp2i#2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -124,6 +124,5 @@ MEDIA_URL='/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-ALLOWED_HOSTS = ['.onrender.com']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ALLOWED_HOSTS = ['*']
